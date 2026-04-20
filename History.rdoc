@@ -1,3 +1,10 @@
+=== 6.0.5 / 2026-04-20
+
+* 2 bug fixes:
+
+  * Avoid circular requires in lib/minitest/server_plugin.rb.
+  * Raise TypeError if assert_raises is passed anything but modules/classes.
+
 === 6.0.4 / 2026-04-14
 
 * 1 bug fix:
