@@ -211,7 +211,7 @@ module Minitest
     def assert_equal exp, act, msg = nil
       msg = message(msg, nil) { diff exp, act }
 
-      refute_nil exp, message { "Use assert_nil if expecting nil" } if exp.nil? # don't count
+      refute_nil exp, message { "Use assert_nil if expecting nil" } if nil == exp # don't count
 
       assert exp == act, msg
     end
@@ -287,7 +287,7 @@ module Minitest
 
     def assert_nil obj, msg = nil
       msg = message(msg) { "Expected #{mu_pp obj} to be nil" }
-      assert obj.nil?, msg
+      assert nil == obj, msg
     end
 
     ##
@@ -454,7 +454,7 @@ module Minitest
         "Expected %s (oid=%d) to be the same as %s (oid=%d)" % data
       }
 
-      refute_nil exp, message { "Use assert_nil if expecting nil" } if exp.nil? # don't count
+      refute_nil exp, message { "Use assert_nil if expecting nil" } if nil == exp # don't count
 
       assert exp.equal?(act), msg
     end
@@ -611,7 +611,7 @@ module Minitest
     def message msg = nil, ending = ".", &default
       return msg if Proc === msg
       proc {
-        custom_message = "#{msg}.\n" unless msg.nil? or msg.to_s.empty?
+        custom_message = "#{msg}.\n" unless nil == msg or msg.to_s.empty?
         "#{custom_message}#{default.call}#{ending}"
       }
     end
@@ -712,7 +712,7 @@ module Minitest
 
     def refute_nil obj, msg = nil
       msg = message(msg) { "Expected #{mu_pp obj} to not be nil" }
-      refute obj.nil?, msg
+      refute nil == obj, msg
     end
 
     ##
