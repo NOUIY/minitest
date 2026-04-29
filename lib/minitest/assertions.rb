@@ -190,11 +190,6 @@ module Minitest
       assert_predicate obj, :empty?, msg
     end
 
-    def _where # :nodoc:
-      Minitest.filter_backtrace(caller).first
-        .split(":in ", 2).first # clean up noise
-    end
-
     ##
     # Fails unless <tt>exp == act</tt> printing the difference between
     # the two, if possible.
