@@ -1,3 +1,10 @@
+=== 6.0.6 / 2026-04-30
+
+* 2 bug fixes:
+
+  * Fix using assert_equal/same/nil w/ BasicObject by comparing w/ `nil == exp`. (mtasaka)
+  * Removed private Assertions#_where as it is no longer used.
+
 === 6.0.5 / 2026-04-20
 
 * 2 bug fixes:
