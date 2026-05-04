@@ -18,7 +18,7 @@ Hoe.spec "minitest" do
   dependency "prism", "~> 1.5"
   dependency "drb",   "~> 2.0"
 
-  self.rdoc_locations << "l:/home/www/minite.st/html/docs"
+  self.rdoc_locations << "l:/home/www/minite.st/rdoc/minitest/"
 
   self.cov_filter = %w[ tmp ]
 end
