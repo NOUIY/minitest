@@ -376,7 +376,7 @@ module Minitest
       assert o1.__send__(op), msg
     end
 
-    NO_RE_MSG = "class or module required for rescue clause. Got %p"
+    NO_RE_MSG = "class or module required for rescue clause. Got %p" # :nodoc:
 
     ##
     # Fails unless the block raises one of +exp+. Returns the
