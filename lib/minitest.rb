@@ -60,7 +60,7 @@ module Minitest
   cattr_accessor :info_signal
   self.info_signal = "INFO"
 
-  cattr_accessor :allow_fork
+  cattr_accessor :allow_fork # :nodoc:
   self.allow_fork = false
 
   ##
