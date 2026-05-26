@@ -26,11 +26,9 @@ class Module # :nodoc:
   end
 end
 
-# :stopdoc:
-module Minitest # fucking hell rdoc...
-  Expectation = Struct.new :target, :ctx
+module Minitest
+  Expectation = Struct.new :target, :ctx # :nodoc:
 end
-# :startdoc:
 
 ##
 # Kernel extensions for minitest
@@ -319,6 +317,6 @@ end
 
 require_relative "expectations"
 
-class Minitest::Expectation
+class Minitest::Expectation # :nodoc:
   include Minitest::Expectations
 end
