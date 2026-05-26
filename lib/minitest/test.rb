@@ -107,7 +107,17 @@ module Minitest
     end
 
     ##
-    # Runs a single test with setup/teardown hooks.
+    # Runs a single test with setup/teardown hooks. Override this
+    # method to customize how the test is run on a class-by-class
+    # basis. eg:
+    #
+    #   class TestBlah < Minitest::Test
+    #     def run
+    #       Dir.chdir tmp_dir do
+    #         super
+    #       end
+    #     end
+    #   end
 
     def run
       time_it do

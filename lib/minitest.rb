@@ -64,7 +64,10 @@ module Minitest
   self.allow_fork = false
 
   ##
-  # Registers Minitest to run at process exit
+  # Registers Minitest to run at process exit. Usually called by
+  # requiring autorun:
+  #
+  #   require "minitest/autorun"
 
   def self.autorun
     Warning[:deprecated] = true
@@ -295,6 +298,9 @@ module Minitest
   #             filtered_methods.each |runnable_method|
   #               runnable_klass.run(self, runnable_method, reporter)
   #                 runnable_klass.new(runnable_method).run
+  #
+  # See also:
+  # * Minitest::Test#run
 
   def self.run args = []
     options = process_args args
@@ -479,7 +485,7 @@ module Minitest
     # Runs a single method and has the reporter record the result.
     # This was considered internal API but is factored out of run so
     # that subclasses can specialize the running of an individual
-    # test. See Minitest::ParallelTest::ClassMethods for an example.
+    # test.
 
     def Runnable.run klass, method_name, reporter
       reporter.prerecord klass, method_name
