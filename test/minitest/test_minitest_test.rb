@@ -1075,31 +1075,34 @@ class TestMinitestTestAssertions < Minitest::Test
       shitty_test_case.i_suck_and_my_tests_are_order_dependent!
     end
   end
+end # TestMinitestAssertions
+
+class TestMinitestExitCode < Minitest::Test
+  # do not parallelize this suite... it just can't handle it. This has
+  # been minimized.
+  def setup
+    super
+    skip "windows doesn't have fork" unless Process.respond_to? :fork
+  end
 
   def test_autorun_does_not_affect_fork_success_status
-    @assertion_count = 0
-    skip "windows doesn't have fork" unless Process.respond_to? :fork
     Process.waitpid(fork {})
     assert_equal true, $?.success?
   end
 
   def test_autorun_does_not_affect_fork_exit_status
-    @assertion_count = 0
-    skip "windows doesn't have fork" unless Process.respond_to? :fork
     Process.waitpid(fork { exit 42 })
     assert_equal 42, $?.exitstatus
   end
 
   def test_autorun_optionally_can_affect_fork_exit_status
-    @assertion_count = 0
-    skip "windows doesn't have fork" unless Process.respond_to? :fork
     Minitest.allow_fork = true
     Process.waitpid(fork { exit 42 })
     refute_equal 42, $?.exitstatus
   ensure
     Minitest.allow_fork = false
   end
-end # TestMinitestAssertions
+end # TestMinitestExitCode
 
 class TestMinitestGuard < Minitest::Test
   parallelize_me!
