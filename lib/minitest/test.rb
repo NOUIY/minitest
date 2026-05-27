@@ -53,8 +53,7 @@ module Minitest
 
     ##
     # Call this at the top of your tests when you absolutely
-    # positively need to have ordered tests. In doing so, you're
-    # admitting that you suck and your tests are weak.
+    # positively need to have ordered tests.
 
     def self.i_suck_and_my_tests_are_order_dependent!
       class << self
@@ -64,10 +63,22 @@ module Minitest
     end
 
     ##
-    # Make diffs for this Test use #pretty_inspect so that diff
-    # in assert_equal can have more details. NOTE: this is much slower
-    # than the regular inspect but much more usable for complex
-    # objects.
+    # Make diffs for this Test use +pretty_inspect+ so that diff
+    # in Assertions#assert_equal can have more details.
+    #
+    # NOTE: this is much slower than the regular inspect but much more
+    # usable for complex objects.
+    #
+    # Example:
+    #
+    #   class TestBlah < Minitest::Test
+    #     make_my_diffs_pretty!
+    #
+    #     def test_complex_object
+    #       exp = deep_complex_object
+    #       assert_equal exp, obj.actual # outputs clean diff
+    #     end
+    #   end
 
     def self.make_my_diffs_pretty!
       require "pp"
@@ -78,8 +89,15 @@ module Minitest
     ##
     # Call this at the top of your tests (inside the +Minitest::Test+
     # subclass or +describe+ block) when you want to run your tests in
-    # parallel. In doing so, you're admitting that you rule and your
-    # tests are awesome.
+    # parallel.
+    #
+    # Example:
+    #
+    #   class TestZeroSideEffects < Minitest::Test
+    #     parallelize_me!
+    #
+    #     # ... tests ...
+    #   end
 
     def self.parallelize_me!
       return unless Minitest.parallel_executor
@@ -109,7 +127,9 @@ module Minitest
     ##
     # Runs a single test with setup/teardown hooks. Override this
     # method to customize how the test is run on a class-by-class
-    # basis. eg:
+    # basis.
+    #
+    # Example:
     #
     #   class TestBlah < Minitest::Test
     #     def run
