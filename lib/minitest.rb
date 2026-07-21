@@ -420,7 +420,7 @@ module Minitest
     end
 
     ##
-    # Returns all instance methods matching the pattern +re+.
+    # Returns all public instance methods matching the pattern +re+.
 
     def self.methods_matching re
       public_instance_methods(true).grep(re).map(&:to_s)

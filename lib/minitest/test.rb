@@ -106,7 +106,7 @@ module Minitest
     end
 
     ##
-    # Returns all instance methods starting with "test_". Based on
+    # Returns all public instance methods starting with "test_". Based on
     # #run_order, the methods are either sorted, randomized
     # (default), or run in parallel.
 
