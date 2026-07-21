@@ -86,7 +86,15 @@ module Minitest
 
       exit_code = Minitest.run ARGV
     } unless @@installed_at_exit
+
     @@installed_at_exit = true
+  end
+
+  ##
+  # Returns true if Minitest.autorun has been called.
+
+  def self.installed_at_exit?
+    @@installed_at_exit
   end
 
   ##
